@@ -21,11 +21,12 @@
     </div>
 
     <div id="PersonContainer" class="DBcontainer">
-        <form action='/addPerson' method="GET"></form>
+        <form action='/seePerson' method="GET"></form>
         <table class="center" id="personTable">
             <caption class="PersonCaption">Person Table</caption>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Hooks ID</th>
@@ -45,8 +46,6 @@
 
     </div>
 
-    <div id=""></div>
-
     <script>
         function displayPerson() {
             // console.log('test');            
@@ -58,6 +57,7 @@
                     var rows = ``;
                     JSON.parse(person).forEach(item => {
                         var row = `<tr>`;
+                        row += `<td>${item.id}</td>`;
                         row += `<td>${item.first_name}</td>`;
                         row += `<td>${item.last_name}</td>`;
                         row += `<td>${item.hooks_id}</td>`;
@@ -71,7 +71,242 @@
                     element.innerHTML += rows;
                 }
             };
-            xhttp.open("GET", "/AddPerson", true);
+            xhttp.open("GET", "/seePerson", true);
+            xhttp.send();
+        }
+    </script>
+
+    <div id="RodContainer" class="DBcontainer">
+        <form action='/seePerson' method="GET"></form>
+        <table class="center" id="RodTable">
+            <caption class="PersonCaption">Rod Table</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Feet</th>
+                    <th>Inches</th>
+                    <th>Reel ID</th>
+                    <th>Line ID</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button type="button" onclick="displayRod()">Click Me</button>
+        </form>
+    </div>
+
+    <script>
+        function displayRod() {
+            // console.log('test');            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var person = xhttp.responseText;
+                    var element = document.getElementById("RodTable");
+                    var rows = ``;
+                    JSON.parse(person).forEach(item => {
+                        var row = `<tr>`;
+                        row += `<td>${item.id}</td>`;
+                        row += `<td>${item.company}</td>`;
+                        row += `<td>${item.feet}</td>`;
+                        row += `<td>${item.inches}</td>`;
+                        row += `<td>${item.reel_id}</td>`;
+                        row += `<td>${item.line_id}</td>`;
+                        row += `</tr>`;
+                        rows += row;
+                    });
+                    element.innerHTML += rows;
+                }
+            };
+            xhttp.open("GET", "/seeRods", true);
+            xhttp.send();
+        }
+    </script>
+
+    <div id="ReelContainer" class="DBcontainer">
+        <form action='/seeReel' method="GET"></form>
+        <table class="center" id="ReelTable">
+            <caption class="PersonCaption">Reel Table</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button type="button" onclick="displayReel()">Click Me</button>
+        </form>
+    </div>
+
+    <script>
+        function displayReel() {
+            // console.log('test');            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var person = xhttp.responseText;
+                    var element = document.getElementById("ReelTable");
+                    var rows = ``;
+                    JSON.parse(person).forEach(item => {
+                        var row = `<tr>`;
+                        row += `<td>${item.id}</td>`;
+                        row += `<td>${item.company}</td>`;
+                        row += `<td>${item.size}</td>`;
+                        row += `</tr>`;
+                        rows += row;
+                    });
+                    element.innerHTML += rows;
+                }
+            };
+            xhttp.open("GET", "/seeReels", true);
+            xhttp.send();
+        }
+    </script>
+
+    <div id="LineContainer" class="DBcontainer">
+        <form action='/seeLine' method="GET"></form>
+        <table class="center" id="LineTable">
+            <caption class="PersonCaption">Line Table</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>IB Test</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button type="button" onclick="displayLine()">Click Me</button>
+        </form>
+    </div>
+
+    <script>
+        function displayLine() {
+            // console.log('test');            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var person = xhttp.responseText;
+                    var element = document.getElementById("LineTable");
+                    var rows = ``;
+                    JSON.parse(person).forEach(item => {
+                        var row = `<tr>`;
+                        row += `<td>${item.id}</td>`;
+                        row += `<td>${item.company}</td>`;
+                        row += `<td>${item.ib_test}</td>`;
+                        row += `</tr>`;
+                        rows += row;
+                    });
+                    element.innerHTML += rows;
+                }
+            };
+            xhttp.open("GET", "/seeLine", true);
+            xhttp.send();
+        }
+    </script>
+
+    <div id="HooksContainer" class="DBcontainer">
+        <form action='/seeHooks' method="GET"></form>
+        <table class="center" id="HooksTable">
+            <caption class="PersonCaption">Hooks Table</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Size</th>
+                    <th>Hook Type</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button type="button" onclick="displayHooks()">Click Me</button>
+        </form>
+    </div>
+
+    <script>
+        function displayHooks() {
+            // console.log('test');            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var person = xhttp.responseText;
+                    var element = document.getElementById("HooksTable");
+                    var rows = ``;
+                    JSON.parse(person).forEach(item => {
+                        var row = `<tr>`;
+                        row += `<td>${item.id}</td>`;
+                        row += `<td>${item.company}</td>`;
+                        row += `<td>${item.size}</td>`;
+                        row += `<td>${item.hook_type}</td>`;
+                        row += `</tr>`;
+                        rows += row;
+                    });
+                    element.innerHTML += rows;
+                }
+            };
+            xhttp.open("GET", "/seeHooks", true);
+            xhttp.send();
+        }
+    </script>
+
+    <div id="SPContainer" class="DBcontainer">
+        <form action='/seeSP' method="GET"></form>
+        <table class="center" id="SPTable">
+            <caption class="PersonCaption">Soft Plastics Table</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Size</th>
+                    <th>Soft Plastic Type</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button type="button" onclick="displaySoftPlastics()">Click Me</button>
+        </form>
+    </div>
+
+    <script>
+        function displaySoftPlastics() {
+            // console.log('test');            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var person = xhttp.responseText;
+                    var element = document.getElementById("SPTable");
+                    var rows = ``;
+                    JSON.parse(person).forEach(item => {
+                        var row = `<tr>`;
+                        row += `<td>${item.id}</td>`;
+                        row += `<td>${item.company}</td>`;
+                        row += `<td>${item.size}</td>`;
+                        row += `<td>${item.sp_type}</td>`;
+                        row += `</tr>`;
+                        rows += row;
+                    });
+                    element.innerHTML += rows;
+                }
+            };
+            xhttp.open("GET", "/seeSP", true);
             xhttp.send();
         }
     </script>
@@ -157,7 +392,5 @@
         border: 1px solid black;
     }
 
-    .PersonCaption{
-
-    }
+    .PersonCaption {}
 </style>

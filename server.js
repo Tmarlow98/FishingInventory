@@ -185,7 +185,7 @@ app.post('/person', function (req, res) {
     });
 });
 
-app.get('/addPerson', function (req, res) {
+app.get('/seePerson', function (req, res) {
     var conn = new sql.Connection(config);
     var requ = new sql.Request(conn);
 
@@ -196,6 +196,121 @@ app.get('/addPerson', function (req, res) {
         }
 
         var sql = "SELECT * FROM person";
+
+        requ.query(sql, function (err, recordset) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(recordset);
+            }
+        });
+        conn.close();
+    });
+});
+
+app.get('/seeRods', function (req, res) {
+    var conn = new sql.Connection(config);
+    var requ = new sql.Request(conn);
+
+    conn.connect(function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        var sql = "SELECT * FROM rods";
+
+        requ.query(sql, function (err, recordset) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(recordset);
+            }
+        });
+        conn.close();
+    });
+});
+
+app.get('/seeReels', function (req, res) {
+    var conn = new sql.Connection(config);
+    var requ = new sql.Request(conn);
+
+    conn.connect(function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        var sql = "SELECT * FROM reels";
+
+        requ.query(sql, function (err, recordset) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(recordset);
+            }
+        });
+        conn.close();
+    });
+});
+
+app.get('/seeLine', function (req, res) {
+    var conn = new sql.Connection(config);
+    var requ = new sql.Request(conn);
+
+    conn.connect(function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        var sql = "SELECT * FROM line";
+
+        requ.query(sql, function (err, recordset) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(recordset);
+            }
+        });
+        conn.close();
+    });
+});
+
+app.get('/seeHooks', function (req, res) {
+    var conn = new sql.Connection(config);
+    var requ = new sql.Request(conn);
+
+    conn.connect(function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        var sql = "SELECT * FROM hooks";
+
+        requ.query(sql, function (err, recordset) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send(recordset);
+            }
+        });
+        conn.close();
+    });
+});
+
+app.get('/seeSP', function (req, res) {
+    var conn = new sql.Connection(config);
+    var requ = new sql.Request(conn);
+
+    conn.connect(function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        var sql = "SELECT * FROM soft_plastics";
 
         requ.query(sql, function (err, recordset) {
             if (err) {
