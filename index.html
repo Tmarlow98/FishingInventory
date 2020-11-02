@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fishing Inventory</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="AddPerson.html">Add New Person</a>
+        <a href="AddHook.html">Add New Hook</a>
+        <a href="AddSoftPlastic.html">Add New Soft Plastic</a>
+        <a href="AddRod.html">Add New Rod</a>
+        <a href="AddReel.html">Add New Reel</a>
+        <a href="AddLine.html">Add New Line</a>
+    </div>
+
+    <div class="mainHeader">
+        <h1>Fishing Inventory Manager</h1>
+    </div>
+
+    <div id="PersonContainer" class="DBcontainer">
+        <form action='/addPerson' method="GET"></form>
+        <table class="center" id="personTable">
+            <caption class="PersonCaption">Person Table</caption>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Hooks ID</th>
+                    <th>Soft Plastic ID</th>
+                    <th>Rods ID</th>
+                    <th>Number of Hooks</th>
+                    <th>Number of Soft Plastics</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button type="button" onclick="displayPerson()">Click Me</button>
+        </form>
+
+    </div>
+
+    <div id=""></div>
+
+    <script>
+        function displayPerson() {
+            // console.log('test');            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var person = xhttp.responseText;
+                    var element = document.getElementById("personTable");
+                    var rows = ``;
+                    JSON.parse(person).forEach(item => {
+                        var row = `<tr>`;
+                        row += `<td>${item.first_name}</td>`;
+                        row += `<td>${item.last_name}</td>`;
+                        row += `<td>${item.hooks_id}</td>`;
+                        row += `<td>${item.sp_id}</td>`;
+                        row += `<td>${item.rods_id}</td>`;
+                        row += `<td>${item.num_hooks}</td>`;
+                        row += `<td>${item.num_sp}</td>`;
+                        row += `</tr>`;
+                        rows += row;
+                    });
+                    element.innerHTML += rows;
+                }
+            };
+            xhttp.open("GET", "/AddPerson", true);
+            xhttp.send();
+        }
+    </script>
+
+</body>
+
+</html>
+
+<style>
+    body {
+        background-color: black;
+    }
+
+    h1 {
+        text-align: center;
+        color: white;
+    }
+
+    /* The navigation bar */
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        /* Set the navbar to fixed position */
+        top: 0;
+        /* Position the navbar at the top of the page */
+        width: 100%;
+        /* Full width */
+    }
+
+    /* Links inside the navbar */
+    .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    /* Change background on mouse-over */
+    .navbar a:hover {
+        background: #ddd;
+        color: black;
+    }
+
+    /* Main content */
+    .main {
+        margin-top: 30px;
+        /* Add a top margin to avoid content overlay */
+    }
+
+    .mainHeader {
+        position: relative;
+        line-height: 30px;
+        margin-top: 50px;
+    }
+
+    .DBcontainer {
+        background-color: white;
+        margin: auto;
+        width: 80%;
+        line-height: 100%;
+        margin-top: 30px;
+        border: 3px solid black;
+        padding: 0px;
+        text-align: center;
+    }
+
+    .button {
+        text-align: center;
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table,
+    th,
+    td {
+        text-align: center;
+        border: 1px solid black;
+    }
+
+    .PersonCaption{
+
+    }
+</style>
